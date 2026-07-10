@@ -1,6 +1,8 @@
 import pandas as pd
 
-data = pd.read_excel('data.ods')
+filename = input()
+
+data = pd.read_excel(filename+'.ods')
 word = data["Word"].tolist()
 defin = data["Definition"].tolist()
 freq = data["Frequency"].tolist()
@@ -29,7 +31,7 @@ for i in range(5):
 	    if answer==word[n]:
 	        print ("You are right!")
 	    else:
-	        print ("Wrong")
+	        print ("Wrong, the answer is "+word[n])
 	        freq[n] = freq[n]*2
 data["Frequency"] = freq
-data.to_excel('data.ods', index=False)
+data.to_excel((filename+'.ods'), index=False)
