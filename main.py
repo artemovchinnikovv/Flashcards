@@ -21,3 +21,15 @@ for i in range(5):
 	answer = input()
 	if answer==word[n]:
 		print ("You are right!")
+		if freq[n]>1:
+			freq[n] = freq[n] // 2
+	else:
+	    print ("Wrong, but you can try again")
+	    answer = input()
+	    if answer==word[n]:
+	        print ("You are right!")
+	    else:
+	        print ("Wrong")
+	        freq[n] = freq[n]*2
+data["Frequency"] = freq
+data.to_excel('data.ods', index=False)
