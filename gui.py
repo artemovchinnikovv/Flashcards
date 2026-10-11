@@ -1,6 +1,7 @@
 import sys
 import time
 from random_def_ans import random_def_ans
+from add_frequency import add_frequency
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QVBoxLayout
 from PySide6.QtCore import Qt, QTimer
 
@@ -11,11 +12,10 @@ class MainWindow(QMainWindow):
         self.resize(600, 400)
         # properties of a window
 
-        self.wordnumbermax = 3
+        self.wordnumbermax = 5
         self.definition, self.answer = random_def_ans(self.wordnumbermax)
         self.wordnumber = 0
-        self.attempt = 0
-        self.attemptmax = 3
+        self.mistakes = [0 for i in range(self.wordnumbermax)]
 
         self.label = QLabel()
         self.label.setText(self.definition[self.wordnumber])
@@ -53,13 +53,15 @@ class MainWindow(QMainWindow):
     def wrong_answer(self):
         self.label.setText("Wrong")
         QTimer.singleShot(1000, self.to_next_word)
+        self.mistakes[self.wordnumber] += 1
 
     def to_next_word(self):
         self.wordnumber = self.wordnumber + 1
         if self.wordnumber >= self.wordnumbermax:
+            add_frequency(self.definition, self.mistakes)
             app.quit()
             return
-        self.label.setText(self.definition[self.wordnumber])
+        self.label.setText(str (self.definition[self.wordnumber]))
 
 app = QApplication(sys.argv)
 window = MainWindow()
