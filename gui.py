@@ -1,9 +1,8 @@
-import sys
 import time
 from random_def_ans import random_def_ans
 from add_frequency import add_frequency
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QVBoxLayout
-from PySide6.QtCore import Qt, QTimer
+from PySide6.QtWidgets import QMainWindow, QLabel, QWidget, QLineEdit, QVBoxLayout
+from PySide6.QtCore import Qt, QTimer, QCoreApplication
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -59,11 +58,6 @@ class MainWindow(QMainWindow):
         self.wordnumber = self.wordnumber + 1
         if self.wordnumber >= self.wordnumbermax:
             add_frequency(self.definition, self.mistakes)
-            app.quit()
+            QCoreApplication.instance().quit()
             return
         self.label.setText(str (self.definition[self.wordnumber]))
-
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-sys.exit(app.exec())
