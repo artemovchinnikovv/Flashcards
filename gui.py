@@ -51,8 +51,11 @@ class MainWindow(QMainWindow):
 
     def wrong_answer(self):
         self.label.setText("Wrong")
+        QTimer.singleShot(1000, self.show_right_word)
+
+    def show_right_word(self):
+        self.label.setText(str (self.answer[self.wordnumber]))
         QTimer.singleShot(1000, self.to_next_word)
-        self.mistakes[self.wordnumber] += 1
 
     def to_next_word(self):
         self.wordnumber = self.wordnumber + 1
