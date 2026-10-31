@@ -16,7 +16,7 @@ class MainWindow(QMainWindow):
         self.wordnumbermax = wordnumbermax
         if rand_or_mist=="Random":
             self.definition, self.answer = random_def_ans(self.wordnumbermax)
-        else:
+        if rand_or_mist=="Mistakes":
             self.definition, self.answer = random_def_ans_mist(self.wordnumbermax)
         self.wordnumber = 0
         self.mistakes = wordnumbermax * [0]

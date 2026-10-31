@@ -1,8 +1,8 @@
-from gui import MainWindow
+from launcher import Launcher
 from PySide6.QtWidgets import QApplication
 import sys
 
 app = QApplication(sys.argv)
-window = MainWindow(5, "Mistakes")
+window = Launcher()
 window.show()
 sys.exit(app.exec())
