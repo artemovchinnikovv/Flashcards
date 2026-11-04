@@ -61,11 +61,9 @@ class Launcher(QMainWindow):
         self.wordnumbermax = int (self.input.text())
 
     def button_start_click(self):
+        self.gui = MainWindow(self.wordnumbermax, self.rand_or_mist)
+        self.gui.show()
         self.close()
-        print (self.wordnumbermax)
-        window = MainWindow(self.wordnumbermax, self.rand_or_mist)
-        window.show()
-        sys.exit(app.exec())
         return
 
     def input_enter_pressed(self):
